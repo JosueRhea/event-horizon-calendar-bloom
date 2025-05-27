@@ -67,9 +67,9 @@ const CalendarHorizontalView: React.FC<CalendarHorizontalViewProps> = ({
 
   return (
     <div className="w-full max-w-6xl mx-auto">
-      <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-2xl rounded-3xl overflow-hidden">
+      <Card className="bg-white/95 backdrop-blur-sm border-0 shadow-2xl rounded-3xl overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-white">
+        <div className="bg-violet-600 p-6 text-white">
           <div className="flex items-center justify-between">
             <Button
               variant="ghost"
@@ -121,7 +121,7 @@ const CalendarHorizontalView: React.FC<CalendarHorizontalViewProps> = ({
           {daysWithEvents.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-slate-500 text-lg mb-4">No events scheduled for this month</p>
-              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+              <Button className="bg-emerald-600 hover:bg-emerald-700 text-white">
                 <Plus className="h-4 w-4 mr-2" />
                 Add Event
               </Button>
@@ -129,15 +129,15 @@ const CalendarHorizontalView: React.FC<CalendarHorizontalViewProps> = ({
           ) : (
             <div className="space-y-6">
               {daysWithEvents.map((dayData) => (
-                <div key={dayData.dateString} className="border-l-4 border-l-blue-500 pl-6 pb-6">
+                <div key={dayData.dateString} className="border-l-4 border-l-emerald-500 pl-6 pb-6">
                   <div className="flex items-center justify-between mb-4">
                     <div>
                       <h3 className={`text-xl font-bold ${
-                        isToday(dayData.day) ? 'text-blue-600' : 'text-slate-800'
+                        isToday(dayData.day) ? 'text-emerald-600' : 'text-slate-800'
                       }`}>
                         {dayData.dayName}, {dayData.day}
                         {isToday(dayData.day) && (
-                          <span className="ml-2 px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full font-medium">
+                          <span className="ml-2 px-2 py-1 bg-emerald-100 text-emerald-700 text-xs rounded-full font-medium">
                             Today
                           </span>
                         )}
@@ -146,7 +146,7 @@ const CalendarHorizontalView: React.FC<CalendarHorizontalViewProps> = ({
                         {dayData.events.length} event{dayData.events.length !== 1 ? 's' : ''}
                       </p>
                     </div>
-                    <Button size="sm" variant="outline">
+                    <Button size="sm" variant="outline" className="border-emerald-600 text-emerald-600 hover:bg-emerald-50">
                       <Plus className="h-4 w-4 mr-1" />
                       Add Event
                     </Button>

@@ -98,9 +98,9 @@ const Calendar: React.FC<CalendarProps> = ({ events }) => {
 
   return (
     <div className="w-full max-w-5xl mx-auto">
-      <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-2xl rounded-3xl overflow-hidden">
+      <Card className="bg-white/95 backdrop-blur-sm border-0 shadow-2xl rounded-3xl overflow-hidden">
         {/* Calendar Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-white">
+        <div className="bg-indigo-600 p-6 text-white">
           <div className="flex items-center justify-between">
             <Button
               variant="ghost"
@@ -179,9 +179,9 @@ const Calendar: React.FC<CalendarProps> = ({ events }) => {
             return (
               <div
                 key={day}
-                className={`h-32 border-r border-b border-slate-100 p-2 cursor-pointer transition-all duration-200 hover:bg-blue-50 ${
-                  isSelected ? 'bg-blue-100' : ''
-                } ${isTodayDate ? 'bg-gradient-to-br from-blue-50 to-purple-50' : ''}`}
+                className={`h-32 border-r border-b border-slate-100 p-2 cursor-pointer transition-all duration-200 hover:bg-emerald-50 ${
+                  isSelected ? 'bg-emerald-100' : ''
+                } ${isTodayDate ? 'bg-blue-50' : ''}`}
                 onClick={() => setSelectedDate(isSelected ? null : dateString)}
               >
                 <div className="h-full flex flex-col">
@@ -216,7 +216,7 @@ const Calendar: React.FC<CalendarProps> = ({ events }) => {
 
         {/* Selected Date Events */}
         {selectedDate && (
-          <div className="p-6 bg-gradient-to-r from-slate-50 to-blue-50 border-t">
+          <div className="p-6 bg-slate-50 border-t">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-slate-800">
                 Events for {new Date(selectedDate).toLocaleDateString('en-US', { 
@@ -226,7 +226,7 @@ const Calendar: React.FC<CalendarProps> = ({ events }) => {
                   day: 'numeric' 
                 })}
               </h3>
-              <Button size="sm" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+              <Button size="sm" className="bg-emerald-600 hover:bg-emerald-700 text-white">
                 <Plus className="h-4 w-4 mr-1" />
                 Add Event
               </Button>
