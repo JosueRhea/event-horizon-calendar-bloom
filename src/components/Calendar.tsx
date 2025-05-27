@@ -1,8 +1,10 @@
+
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Plus, Grid3X3, List } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import EventCard from './EventCard';
+import CalendarHorizontalView from './CalendarHorizontalView';
 
 interface Event {
   id: string;
@@ -16,9 +18,12 @@ interface CalendarProps {
   events: Event[];
 }
 
+type ViewMode = 'grid' | 'horizontal';
+
 const Calendar: React.FC<CalendarProps> = ({ events }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [viewMode, setViewMode] = useState<ViewMode>('grid');
   
   // Sample events data
   const monthNames = [
@@ -80,6 +85,17 @@ const Calendar: React.FC<CalendarProps> = ({ events }) => {
 
   const days = getDaysInMonth(currentDate);
 
+  if (viewMode === 'horizontal') {
+    return (
+      <CalendarHorizontalView
+        events={events}
+        currentDate={currentDate}
+        onNavigateMonth={navigateMonth}
+        onViewModeChange={setViewMode}
+      />
+    );
+  }
+
   return (
     <div className="w-full max-w-5xl mx-auto">
       <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-2xl rounded-3xl overflow-hidden">
@@ -99,14 +115,39 @@ const Calendar: React.FC<CalendarProps> = ({ events }) => {
               {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
             </h2>
             
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => navigateMonth('next')}
-              className="text-white hover:bg-white/20 rounded-full"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </Button>
+            <div className="flex items-center gap-2">
+              <div className="flex bg-white/20 rounded-lg p-1">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setViewMode('grid')}
+                  className={`text-white hover:bg-white/20 rounded ${
+                    viewMode === 'grid' ? 'bg-white/30' : ''
+                  }`}
+                >
+                  <Grid3X3 className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setViewMode('horizontal')}
+                  className={`text-white hover:bg-white/20 rounded ${
+                    viewMode === 'horizontal' ? 'bg-white/30' : ''
+                  }`}
+                >
+                  <List className="h-4 w-4" />
+                </Button>
+              </div>
+              
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => navigateMonth('next')}
+                className="text-white hover:bg-white/20 rounded-full"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </Button>
+            </div>
           </div>
         </div>
 
