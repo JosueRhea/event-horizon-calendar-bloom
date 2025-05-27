@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -13,19 +12,15 @@ interface Event {
   date: string;
 }
 
-const Calendar = () => {
+interface CalendarProps {
+  events: Event[];
+}
+
+const Calendar: React.FC<CalendarProps> = ({ events }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   
   // Sample events data
-  const events: Event[] = [
-    { id: '1', title: 'Team Meeting', time: '10:00 AM', category: 'meeting', date: '2025-01-15' },
-    { id: '2', title: 'Project Deadline', time: '5:00 PM', category: 'work', date: '2025-01-18' },
-    { id: '3', title: 'Doctor Appointment', time: '2:00 PM', category: 'personal', date: '2025-01-20' },
-    { id: '4', title: 'Code Review', time: '11:00 AM', category: 'work', date: '2025-01-22' },
-    { id: '5', title: 'Birthday Party', time: '7:00 PM', category: 'personal', date: '2025-01-25' },
-  ];
-
   const monthNames = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
